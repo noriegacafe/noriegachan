@@ -20,6 +20,8 @@ vichan is a fork of (now defunc'd) [Tinyboard](http://github.com/savetheinternet
 a great imageboard package, actively building on it and adding a lot of features and other
 improvements.
 
+Some documentation may be found on our [wiki](https://github.com/vichan-devel/vichan/wiki). (feel free to contribute)
+
 Requirements
 ------------
 1.	PHP >= 5.6
@@ -51,7 +53,7 @@ See the [Installation Guide](https://github.com/fallenPineapple/NPFchan/wiki/Ins
 
 Please remember to change the administrator account password.
 
-See also: [Configuration Basics](https://github.com/fallenPineapple/NPFchan/wiki/Configuration).
+See also: [Configuration Basics](https://github.com/fallenPineapple/NPFchan/wiki/config).
 
 Upgrade
 -------
@@ -70,21 +72,6 @@ As it stands NPFchan has no public support system.
 ### vichan support
 vichan is still beta software -- there are bound to be bugs. If you find a
 bug, please report it.
-
-If you need assistance with installing, configuring, or using vichan, you may
-find support from a variety of sources:
-
-*	If you're unsure about how to enable or configure certain features, make
-	sure you have read the comments in ```inc/config.php```.
-*	Check out an [official vichan board](http://int.vichan.net/devel/).
-*	You can join vichan's IRC channel for support
-	[irc.6irc.net #vichan-devel](irc://irc.6irc.net/vichan-devel)
-
-### Tinyboard support
-vichan is based on a Tinyboard, so both engines have very much in common. These
-links may be helpful for you as well: 
-
-*	Tinyboard documentation can be found [here](https://web.archive.org/web/20121016074303/http://tinyboard.org/docs/?p=Main_Page).
 
 CLI tools
 -----------------
