@@ -488,7 +488,7 @@ class Thread {
         if($isnoko50)
         {
             $thread_num = $this->posts[0]->id;
-			$min_post_num = $this->posts[1]->id;
+            $min_post_num = $this->posts[1]->id;
 
             for($i=1; $i<count($this->posts); $i++)
             {
