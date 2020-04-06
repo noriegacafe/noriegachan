@@ -1,3 +1,19 @@
+# License of Bazukachan
+Copyright (c) 2017 Bazukachan
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+All copyright notices and permission notices (including this file) shall be
+included and remain unedited in all copies or substantial portions of the
+Software. This explicitly includes but is not limited to the vichan copyright
+notices found in the footers of some template files.
+
+
 # License of NPFchan
 Copyright (c) 2017 NPFchan
 
