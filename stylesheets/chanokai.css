@@ -1,0 +1,83 @@
+/*27chan Chanokai v1.4: no opacity*/
+
+body {
+  background: #282828;
+  color: rgb(187, 172, 133);
+}
+
+div.post.reply {
+  background: rgb(49, 51, 49);
+  border-width: 0px;
+}
+
+.intro span.subject {
+  color: rgb(58, 115, 117);
+}
+
+a, a:visited {
+  color: rgb(108, 141, 128);
+}
+
+span.heading {
+  color: rgb(177, 34, 29);
+}
+
+hr {
+  border-top-color: #413c37;
+}
+
+span.quote {
+  color: rgb(131, 129, 23);
+}
+
+span.spoiler {
+  background: #1d2021;
+  color: #1d2021;
+}
+
+div.post.reply div.body a {
+  color: #d1665a;
+}
+
+div.post.reply.highlighted{
+  background: rgb(74, 77, 74);
+}
+
+.intro span.name {
+  color: #815c66;
+}
+
+.intro a.email span.name {
+  color: rgb(75, 75, 111)
+}
+
+.desktop-style div.boardlist:not(.bottom){
+  border-bottom: 0;
+  background-color: rgb(53, 51, 50);
+  box-shadow: 0 5px 2px rgba(0, 0, 0, .15);
+}
+
+form table tr th {
+  background: #3c3836;
+  border: 0;
+}
+
+#options_div{
+  background: rgb(54, 56, 54);
+}
+
+div.ban {
+    background: transparent;
+}
+
+div.ban h2 {
+    background: #83a5B8;
+    border: 1px solid #83a5B8;
+}
+
+div.pages {
+  color: rgb(109, 136, 125);
+  background: transparent;
+  border-right: 0;
+  border-bottom: 0;
+}
