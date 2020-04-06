@@ -7,6 +7,10 @@ require_once 'inc/functions.php';
 require_once 'inc/anti-bot.php';
 require_once 'inc/bans.php';
 
+if ((!isset($_POST['mod']) || !$_POST['mod']) && $config['board_locked']) {
+    error("Board is locked");
+}
+
 $dropped_post = false;
 
 // Is it a post coming from NNTP? Let's extract it and pretend it's a normal post.
@@ -194,10 +198,6 @@ if (isset($_POST['delete'])) {
 	// Check if board exists
 	if (!openBoard($_POST['board']))
 		error($config['error']['noboard']);
-
-	if ((!isset($_POST['mod']) || !$_POST['mod']) && $config['board_locked']) {
-    	error("Board is locked");
-	}
 	
 	// Check if banned
 	checkBan($board['uri']);
@@ -314,10 +314,6 @@ if (isset($_POST['delete'])) {
 	// Check if board exists
 	if (!openBoard($_POST['board']))
 		error($config['error']['noboard']);
-
-	if ((!isset($_POST['mod']) || !$_POST['mod']) && $config['board_locked']) {
-   		error("Board is locked");
-	}
 	
 	// Check if banned
 	checkBan($board['uri']);
@@ -370,8 +366,8 @@ if (isset($_POST['delete'])) {
 			);
 		$query = prepare("INSERT INTO ``reports`` VALUES (NULL, :time, :ip, :board, :post, :reason)");
 		$query->bindValue(':time', time(), PDO::PARAM_INT);
-		$query->bindValue(':ip', $_SERVER['REMOTE_ADDR'], PDO::PARAM_STR);
-		$query->bindValue(':board', $board['uri'], PDO::PARAM_STR);
+		$query->bindValue(':ip', get_ip_hash($_SERVER['REMOTE_ADDR']), PDO::PARAM_STR);
+		$query->bindValue(':board', $board['uri'], PDO::PARAM_INT);
 		$query->bindValue(':post', $id, PDO::PARAM_INT);
 		$query->bindValue(':reason', $reason, PDO::PARAM_STR);
 		$query->execute() or error(db_error($query));
@@ -396,10 +392,6 @@ if (isset($_POST['delete'])) {
 	// Check if board exists
 	if (!openBoard($post['board']))
 		error($config['error']['noboard']);
-
-	if ((!isset($_POST['mod']) || !$_POST['mod']) && $config['board_locked']) {
-    	error("Board is locked");
-	}
 	
 	if (!isset($_POST['name']))
 		$_POST['name'] = $config['anonymous'];
@@ -430,10 +422,6 @@ if (isset($_POST['delete'])) {
 	}
 
 	if (!$dropped_post) {
-
-		// Check if banned
-		checkBan($board['uri']);
-
 		// Check for CAPTCHA right after opening the board so the "return" link is in there
 		if ($config['recaptcha']) {
 			if (!isset($_POST['g-recaptcha-response']))
@@ -474,6 +462,7 @@ if (isset($_POST['delete'])) {
 			error($config['error']['referer']);
 	
 		checkDNSBL();
+		
 		// Check if banned, warned or nicenoticed
 		checkBan($board['uri']);
 
@@ -582,7 +571,7 @@ if (isset($_POST['delete'])) {
 				else if (!in_array($post['extension'], $config['allowed_ext']) && !in_array($post['extension'], $config['allowed_ext_files']))
 					error($config['error']['unknownext']);
 	
-				$post['file_tmp' . $ui] = tempnam($config['tmp'] . $ui, 'url');
+				$post['file_tmp' . $ui] = @tempnam($config['tmp'] . $ui, 'url');
 
 				$func = create_function('$file', '@unlink($file); fatal_error_handler();');
 				register_shutdown_function($func, $post['file_tmp' . $ui]);
@@ -752,28 +741,28 @@ if (isset($_POST['delete'])) {
 						if (sizeof($_FILES) > 1 || sizeof($file['size']) > 1)
 							$fi_file['file_id'] .= "-$i";
 						
-						$fi_file['file'] = $board['dir'] . $config['dir']['img'] . $fi_file['file_id'] . '.' . $fi_file['extension'];
-						$fi_file['thumb'] = $board['dir'] . $config['dir']['thumb'] . $fi_file['file_id'] . '.' . ($config['thumb_ext'] ? $config['thumb_ext'] : $fi_file['extension']);
+						$fi_file['file_path'] = $board['dir'] . $config['dir']['img'] . $fi_file['file_id'] . '.' . $fi_file['extension'];
+						$fi_file['thumb_path'] = $board['dir'] . $config['dir']['thumb'] . $fi_file['file_id'] . '.' . ($config['thumb_ext'] ? $config['thumb_ext'] : $fi_file['extension']);
 						$post['files'][] = $fi_file;
 						$i++;
 					}
 				}
 			} else {
-			if ($file['size'] && $file['tmp_name']) {
-				$file['filename'] = urldecode($file['name']);
-				$file['extension'] = strtolower(mb_substr($file['filename'], mb_strrpos($file['filename'], '.') + 1));
-				if (isset($config['filename_func']))
-					$file['file_id'] = $config['filename_func']($file);
-				else
-					$file['file_id'] = time() . substr(microtime(), 2, 3);
+				if ($file['size'] && $file['tmp_name']) {
+					$file['filename'] = urldecode($file['name']);
+					$file['extension'] = strtolower(mb_substr($file['filename'], mb_strrpos($file['filename'], '.') + 1));
+					if (isset($config['filename_func']))
+						$file['file_id'] = $config['filename_func']($file);
+					else
+						$file['file_id'] = time() . substr(microtime(), 2, 3);
 
-				if (sizeof($_FILES) > 1)
-					$file['file_id'] .= "-$i";
-				
-				$file['file'] = $board['dir'] . $config['dir']['img'] . $file['file_id'] . '.' . $file['extension'];
-				$file['thumb'] = $board['dir'] . $config['dir']['thumb'] . $file['file_id'] . '.' . ($config['thumb_ext'] ? $config['thumb_ext'] : $file['extension']);
-				$post['files'][] = $file;
-				$i++;
+					if (sizeof($_FILES) > 1)
+						$file['file_id'] .= "-$i";
+					
+					$file['file_path'] = $board['dir'] . $config['dir']['img'] . $file['file_id'] . '.' . $file['extension'];
+					$file['thumb_path'] = $board['dir'] . $config['dir']['thumb'] . $file['file_id'] . '.' . ($config['thumb_ext'] ? $config['thumb_ext'] : $file['extension']);
+					$post['files'][] = $file;
+					$i++;
 				}
 			}
 		}
@@ -1041,7 +1030,7 @@ if (isset($_POST['delete'])) {
 				$file['extension'] == ($config['thumb_ext'] ? $config['thumb_ext'] : $file['extension'])) {
 			
 				// Copy, because there's nothing to resize
-				copy($file['tmp_name'], $file['thumb']);
+				copy($file['tmp_name'], $file['thumb_path']);
 			
 				$file['thumbwidth'] = $image->size->width;
 				$file['thumbheight'] = $image->size->height;
@@ -1052,7 +1041,7 @@ if (isset($_POST['delete'])) {
 					$post['op'] ? $config['thumb_op_height'] : $config['thumb_height']
 				);
 				
-				$thumb->to($file['thumb']);
+				$thumb->to($file['thumb_path']);
 			
 				$file['thumbwidth'] = $thumb->width;
 				$file['thumbheight'] = $thumb->height;
@@ -1066,14 +1055,13 @@ if (isset($_POST['delete'])) {
 						escapeshellarg($file['tmp_name'])))
 						error(_('Could not strip EXIF metadata!'), null, $error);
 				} else {
-					$image->to($file['file']);
+					$image->to($file['file_path']);
 					$dont_copy_file = true;
 				}
 			}
 			$image->destroy();
 		} else {
 			// not an image
-			//copy($config['file_thumb'], $post['thumb']);
 			$file['thumb'] = 'file';
 
 			$size = @getimagesize(sprintf($config['file_thumb'],
@@ -1083,40 +1071,31 @@ if (isset($_POST['delete'])) {
 			$file['thumbheight'] = $size[1];
 		}
 
-		if ($config['tesseract_ocr'] && $file['thumb'] != 'file') { // Let's OCR it!
-			$fname = $file['tmp_name'];
+		if ($config['tesseract_ocr'] && !isset($file['thumb'])) { // Let's OCR it! (Unless thumb is already determined to be a file icon or spoiler)
+			$fname = ($file['height'] > 500 || $file['width'] > 500) ? $file['thumb_path'] : $file['tmp_name'];
+			$tmpname = "tmp/tesseract/".rand(0,10000000);
 
-			if ($file['height'] > 500 || $file['width'] > 500) {
-				$fname = $file['thumb'];
-			}
-
-			if ($fname == 'spoiler') { // We don't have that much CPU time, do we?
-			}
-			else {
-				$tmpname = "tmp/tesseract/".rand(0,10000000);
-
-				// Preprocess command is an ImageMagick b/w quantization
-				$error = shell_exec_error(sprintf($config['tesseract_preprocess_command'], escapeshellarg($fname)) . " | " .
+			// Preprocess command is an ImageMagick b/w quantization
+			$error = shell_exec_error(sprintf($config['tesseract_preprocess_command'], escapeshellarg($fname)) . " | " .
                                                           'tesseract stdin '.escapeshellarg($tmpname).' '.$config['tesseract_params']);
-				$tmpname .= ".txt";
+			$tmpname .= ".txt";
 
-				$value = @file_get_contents($tmpname);
-				@unlink($tmpname);
+			$value = @file_get_contents($tmpname);
+			@unlink($tmpname);
 
-				if ($value && trim($value)) {
-					// This one has an effect, that the body is appended to a post body. So you can write a correct
-					// spamfilter.
-					$post['body_nomarkup'] .= "<tinyboard ocr image $key>".htmlspecialchars($value)."</tinyboard>";
-				}
+			if ($value && trim($value)) {
+				// This one has an effect, that the body is appended to a post body. So you can write a correct
+				// spamfilter.
+				$post['body_nomarkup'] .= "<tinyboard ocr image $key>".htmlspecialchars($value)."</tinyboard>";
 			}
 		}
 		
 		if (!isset($dont_copy_file) || !$dont_copy_file) {
 			if (isset($file['file_tmp'])) {
-				if (!@rename($file['tmp_name'], $file['file']))
+				if (!@rename($file['tmp_name'], $file['file_path']))
 					error($config['error']['nomove']);
-				chmod($file['file'], 0644);
-			} elseif (!@move_uploaded_file($file['tmp_name'], $file['file']))
+				chmod($file['file_path'], 0644);
+			} elseif (!@move_uploaded_file($file['tmp_name'], $file['file_path']))
 				error($config['error']['nomove']);
 			}
 		}
@@ -1196,11 +1175,9 @@ if (isset($_POST['delete'])) {
 	// Remove board directories before inserting them into the database.
 	if ($post['has_file']) {
 		foreach ($post['files'] as $key => &$file) {
-			$file['file_path'] = $file['file'];
-			$file['thumb_path'] = $file['thumb'];
-			$file['file'] = mb_substr($file['file'], mb_strlen($board['dir'] . $config['dir']['img']));
-			if ($file['is_an_image'] && $file['thumb'] != 'spoiler')
-				$file['thumb'] = mb_substr($file['thumb'], mb_strlen($board['dir'] . $config['dir']['thumb']));
+			$file['file'] = mb_substr($file['file_path'], mb_strlen($board['dir'] . $config['dir']['img']));
+			if (!isset($file['thumb']))
+				$file['thumb'] = mb_substr($file['thumb_path'], mb_strlen($board['dir'] . $config['dir']['thumb']));
 		}
 	}
 	
