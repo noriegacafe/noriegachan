@@ -71,3 +71,15 @@ a:link:hover, a:visited:hover {
         float: none;
         margin: 10px auto;
 }
+
+@media screen and (max-width: 696px) {
+	.box-wrap {
+		overflow: visible;
+	}
+	.box {
+		width: 100%;
+	}
+	.box ul {
+		text-align: center;
+        }
+}
