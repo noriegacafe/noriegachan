@@ -886,17 +886,17 @@ $config['nicenotice_reasons'][] = "We care, and we hope you feel better soon. We
  */
  
 	// Standard Markup
-	$config['markup'][] = array("/\[b\](.+?)\[\/b\]/s", "<b>\$1</b>");
-	$config['markup'][] = array("/\[i\](.+?)\[\/i\]/s", "<i>\$1</i>");
-	$config['markup'][] = array("/\[u\](.+?)\[\/u\]/s", "<u>\$1</u>");
-	$config['markup'][] = array("/\[-\](.+?)\[\/-\]/s", "<s>\$1</s>");
+	// $config['markup'][] = array("/\[b\](.+?)\[\/b\]/s", "<b>\$1</b>");
+	// $config['markup'][] = array("/\[i\](.+?)\[\/i\]/s", "<i>\$1</i>");
+	// $config['markup'][] = array("/\[u\](.+?)\[\/u\]/s", "<u>\$1</u>");
+	// $config['markup'][] = array("/\[-\](.+?)\[\/-\]/s", "<s>\$1</s>");
 	// Special Markup
-	$config['markup'][] = array("/\[s\]/s", "<span class=\"spoiler\">");
-	$config['markup'][] = array("/\[g\]/s", "<span class=\"quote\">");
-	$config['markup'][] = array("/\[o\]/s", "<span class=\"orange\">");
-	$config['markup'][] = array("/\[p\]/s", "<span class=\"ponkpink\">");
-	$config['markup'][] = array("/\[\/\]/s", "</span>");
-	$config['markup'][] = array("/\[align=(center|right)\](.+?)\[\/align\]/s", "<div style=\"text-align: $1;\">\$2</div>");
+	// $config['markup'][] = array("/\[s\]/s", "<span class=\"spoiler\">");
+	// $config['markup'][] = array("/\[g\]/s", "<span class=\"quote\">");
+	// $config['markup'][] = array("/\[o\]/s", "<span class=\"orange\">");
+	// $config['markup'][] = array("/\[p\]/s", "<span class=\"ponkpink\">");
+	// $config['markup'][] = array("/\[\/\]/s", "</span>");
+	// $config['markup'][] = array("/\[align=(center|right)\](.+?)\[\/align\]/s", "<div style=\"text-align: $1;\">\$2</div>");
 	
 
 	// // Dice Roll Markup
