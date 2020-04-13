@@ -570,7 +570,7 @@ div.blotter {
 
 table.announcements {
   text-align: center;
-  width: 480px;
+  width: 390px;
   margin-left: auto;
   margin-right: auto;
   font-size: 0.8em;
@@ -591,8 +591,6 @@ table.announcements tbody td:first-child {
 table.announcements tfoot td {
   text-align: right;
 }
-
-
 
 table.announcements-list {
   text-align: center;
@@ -632,10 +630,6 @@ table.announcements-list tbody tr td:nth-child(4) :last-child {
   box-sizing: border-box;
   width: 100%;
 }
-
-
-
-
 
 table.archive-list {
   text-align: center;
