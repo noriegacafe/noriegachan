@@ -399,7 +399,7 @@ span.delicious {
   text-fill-color: transparent;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: heading 1s linear infinite;
+  animation: delicious 1s linear infinite;
 }
 
 @keyframes delicious {
