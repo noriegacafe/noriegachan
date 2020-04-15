@@ -402,6 +402,12 @@ span.delicious {
   animation: heading 1s linear infinite;
 }
 
+@keyframes delicious {
+  to {
+    background-position: 200% center;
+  }
+}
+
 span.spoiler {
   background: black;
   color: black;
