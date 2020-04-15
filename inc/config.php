@@ -884,12 +884,50 @@ $config['nicenotice_reasons'][] = "We care, and we hope you feel better soon. We
  *  Markup settings
  * ====================
  */
- 
-	// Standard Markup
-	// $config['markup'][] = array("/\[b\](.+?)\[\/b\]/s", "<b>\$1</b>");
+	// JIS ASCII art. This *must* be the first markup or it won't work.
+	// $config['markup'][] = array(
+	// 	"/\[(aa|code)\](.+?)\[\/(?:aa|code)\]/s", 
+	// 	function($matches) {
+	// 		$markupchars = array('_', '\'', '~', '*', '=', '-');
+	// 		$replacement = $markupchars;
+	// 		array_walk($replacement, function(&$v) {
+	// 			$v = "&#".ord($v).";";
+	// 		});
+
+	// 		// These are hacky fixes for ###board-tags###, ellipses and >quotes.
+	// 		$markupchars[] = '###';
+	// 		$replacement[] = '&#35;&#35;&#35;';
+	// 		$markupchars[] = '&gt;';
+	// 		$replacement[] = '&#62;';
+	// 		$markupchars[] = '...';
+	// 		$replacement[] = '..&#46;';
+
+	// 		if ($matches[1] === 'aa') {
+	// 			return '<span class="aa">' . str_replace($markupchars, $replacement, $matches[2]) . '</span>';
+	// 		} else {
+	// 			return str_replace($markupchars, $replacement, $matches[0]);
+	// 		}
+	// 	}
+	// );
+
+	// Markdown
+	// "Wiki" markup syntax ($config['wiki_markup'] in pervious versions):
+	// $config['markup'][] = array("/\*\*(.+?)\*\*/", "<span class=\"spoiler\">\$1</span>");
+	// $config['markup'][] = array("/''(.+?)''/", "<em>\$1</em>");
+	// $config['markup'][] = array("/'''(.+?)'''/", "<strong>\$1</strong>");
+	// $config['markup'][] = array("/__(.+?)__/", "<u>\$1</u>");
+	// $config['markup'][] = array("/^[ |\t]*==(.+?)==[ |\t]*$/m", "<span class=\"heading\">\$1</span>");
+	// $config['markup'][] = array("/~~(.+?)~~/", "<s>\$1</s>");
+
+	// BBCode
+	// $config['markup'][] = array("/\[spoiler\](.+?)\[\/spoiler\]/s", "<span class=\"spoiler\">\$1</span>");
 	// $config['markup'][] = array("/\[i\](.+?)\[\/i\]/s", "<i>\$1</i>");
+	// $config['markup'][] = array("/\[b\](.+?)\[\/b\]/s", "<b>\$1</b>");
 	// $config['markup'][] = array("/\[u\](.+?)\[\/u\]/s", "<u>\$1</u>");
-	// $config['markup'][] = array("/\[-\](.+?)\[\/-\]/s", "<s>\$1</s>");
+	// $config['markup'][] = array("/\[heading\](.+?)\[\/heading\]/s", "<span class=\"heading\">\$1</span>");
+	// $config['markup'][] = array("/\[s\](.+?)\[\/s\]/s", "<s>\$1</s>");
+	// $config['markup'][] = array("/\[code\](.+?)\[\/code\]/ms", "<code><pre class=\"prettyprint\" style=\"display:inline-block\">\$1</pre></code>");
+ 
 	// Special Markup
 	// $config['markup'][] = array("/\[s\]/s", "<span class=\"spoiler\">");
 	// $config['markup'][] = array("/\[g\]/s", "<span class=\"quote\">");
@@ -899,15 +937,8 @@ $config['nicenotice_reasons'][] = "We care, and we hope you feel better soon. We
 	// $config['markup'][] = array("/\[align=(center|right)\](.+?)\[\/align\]/s", "<div style=\"text-align: $1;\">\$2</div>");
 	
 
-	// // Dice Roll Markup
+	// Dice Roll Markup
 	// $config['markup'][] = array("/\[diceroll\](.+?)\[\/diceroll\]/s", "<img src='" . $config['root'] . "static/icons/dice.png' width=16 height=16/><b>\$1</b>");
-
-
-	// "Wiki" markup syntax ($config['wiki_markup'] in pervious versions):
-	// $config['markup'][] = array("/'''(.+?)'''/", "<strong>\$1</strong>");
-	// $config['markup'][] = array("/''(.+?)''/", "<em>\$1</em>");
-	// $config['markup'][] = array("/\*\*(.+?)\*\*/", "<span class=\"spoiler\">\$1</span>");
-	// $config['markup'][] = array("/^[ |\t]*==(.+?)==[ |\t]*$/m", "<span class=\"heading\">\$1</span>");
 
 	// Code markup. This should be set to a regular expression, using tags you want to use. Examples:
 	// "/\[code\](.*?)\[\/code\]/is"
