@@ -1441,3 +1441,11 @@ table.archive-list tr:hover td {
 .hover-show:hover {
     opacity: 1;
 }
+
+/* Corona */
+.corona {
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  color: #af0a0f;
+}
