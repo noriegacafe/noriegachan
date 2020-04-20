@@ -913,8 +913,8 @@ $config['nicenotice_reasons'][] = "We care, and we hope you feel better soon. We
 	// Markdown
 	// "Wiki" markup syntax ($config['wiki_markup'] in pervious versions):
 	// $config['markup'][] = array("/\*\*(.+?)\*\*/", "<span class=\"spoiler\">\$1</span>");
-	// $config['markup'][] = array("/''(.+?)''/", "<em>\$1</em>");
 	// $config['markup'][] = array("/'''(.+?)'''/", "<strong>\$1</strong>");
+	// $config['markup'][] = array("/''(.+?)''/", "<em>\$1</em>");
 	// $config['markup'][] = array("/__(.+?)__/", "<u>\$1</u>");
 	// $config['markup'][] = array("/^[ |\t]*==(.+?)==[ |\t]*$/m", "<span class=\"heading\">\$1</span>");
 	// $config['markup'][] = array("/~~(.+?)~~/", "<s>\$1</s>");
