@@ -328,6 +328,10 @@ span.ponkpink {
   color: #FF69B3;
 }
 
+.rquote {
+	color: #E0727F;
+}
+
 span.omitted {
   display: block;
   margin-top: 1em;
