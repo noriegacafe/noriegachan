@@ -1,6 +1,6 @@
 <a href="
 	{% if post.file|extension == 'webm' or post.file|extension == 'mp4' %}
-		{{ config.root }}player.php?v={% if shadow %}{{ config.uri_shadow_img }}{% else %}{{ config.uri_img }}{% endif %}{{ post.file }}&amp;t={{ post.filename|e('url') }}&amp;loop=1
+		{{ config.root }}player.php?v={% if shadow %}{{ config.uri_shadow_img }}{% else %}{{ config.uri_img }}{% endif %}{{ post.file }}&amp;t={{ post.filename|e('url') }}
 	{% else %}
 		{% if shadow %}{{ config.uri_shadow_img }}{% else %}{{ config.uri_img }}{% endif %}{{ post.file }}
 	{% endif %}
