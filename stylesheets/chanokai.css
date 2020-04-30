@@ -1,4 +1,4 @@
-/*27chan Chanokai v1.4: no opacity*/
+/*27chan Chanokai v1.5: no opacity*/
 
 body {
   background: #282828;
@@ -39,7 +39,7 @@ div.post.reply div.body a {
   color: #d1665a;
 }
 
-div.post.reply.highlighted{
+div.post.reply.highlighted {
   background: rgb(74, 77, 74);
 }
 
@@ -51,7 +51,7 @@ div.post.reply.highlighted{
   color: rgb(75, 75, 111)
 }
 
-.desktop-style div.boardlist:not(.bottom){
+.desktop-style div.boardlist:not(.bottom) {
   border-bottom: 0;
   background-color: rgb(53, 51, 50);
   box-shadow: 0 5px 2px rgba(0, 0, 0, .15);
@@ -62,17 +62,17 @@ form table tr th {
   border: 0;
 }
 
-#options_div{
+#options_div {
   background: rgb(54, 56, 54);
 }
 
 div.ban {
-    background: transparent;
+  background: transparent;
 }
 
 div.ban h2 {
-    background: #83a5B8;
-    border: 1px solid #83a5B8;
+  background: #83a5B8;
+  border: 1px solid #83a5B8;
 }
 
 div.pages {
@@ -80,4 +80,8 @@ div.pages {
   background: transparent;
   border-right: 0;
   border-bottom: 0;
+}
+
+div.report {
+  color: #a9a9a9;
 }
