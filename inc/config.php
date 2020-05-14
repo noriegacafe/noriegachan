@@ -1378,8 +1378,12 @@ $config['nicenotice_reasons'][] = "We care, and we hope you feel better soon. We
 	// It's very important that you match the entire input (with ^ and $) or things will not work correctly.
 	$config['embedding'] = array(
 		array(
-			'/^https?:\/\/(\w+\.)?youtube\.com\/watch\?v=([a-zA-Z0-9\-_]{10,11})(&.+)?$/i',
-			'<iframe style="float: left;margin: 10px 20px;" width="%%tb_width%%" height="%%tb_height%%" frameborder="0" id="ytplayer" src="http://www.youtube.com/embed/$2"></iframe>'
+			'/^https?:\/\/(?:\w+\.|)(?:youtu\.be\/|(?:youtube\.com\/|hooktube\.com\/)(?:embed\/|watch\?v=|watch\?v=))([a-zA-Z0-9\-_]{10,11})(&.+)?$/i',
+			'<div class="video-container" data-video="$1">'.
+			'<span class="unimportant yt-help">YouTube embed. Click thumbnail to play.</span><br>'.
+			'<a href="$0" target="_blank" class="file">'.
+			'<img style="width:%%tb_width%%px" src="//img.youtube.com/vi/$1/0.jpg" class="post-image"/>'.
+			'</a></div>'
 		),
 		array(
 			'/^https?:\/\/(\w+\.)?vimeo\.com\/(\d{2,10})(\?.+)?$/i',
