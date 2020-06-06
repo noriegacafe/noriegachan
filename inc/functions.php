@@ -246,15 +246,14 @@ function loadConfig() {
 			$config['image_deleted'] = $config['dir']['static'] . 'deleted.png';
 
 		if (isset($board)) {
-			$config['uri_thumb'] = $config['root'] . $board['dir'] . $config['dir']['thumb'];				if (!isset($config['uri_thumb']))
-		elseif (isset($board['dir']))					$config['uri_thumb'] = $config['root'] . $board['dir'] . $config['dir']['thumb'];
-			$config['uri_thumb'] = sprintf($config['uri_thumb'], $board['dir']);				elseif (isset($board['dir']))
-
+			if (!isset($config['uri_thumb']))
+				$config['uri_thumb'] = $config['root'] . $board['dir'] . $config['dir']['thumb'];
+			elseif (isset($board['dir']))
 				$config['uri_thumb'] = sprintf($config['uri_thumb'], $board['dir']);
-		if (!isset($config['uri_img']))	
-			$config['uri_img'] = $config['root'] . $board['dir'] . $config['dir']['img'];				if (!isset($config['uri_img']))
-		elseif (isset($board['dir']))					$config['uri_img'] = $config['root'] . $board['dir'] . $config['dir']['img'];
-			$config['uri_img'] = sprintf($config['uri_img'], $board['dir']);				elseif (isset($board['dir']))
+
+			if (!isset($config['uri_img']))
+				$config['uri_img'] = $config['root'] . $board['dir'] . $config['dir']['img'];
+			elseif (isset($board['dir']))
 				$config['uri_img'] = sprintf($config['uri_img'], $board['dir']);
 		}
 
