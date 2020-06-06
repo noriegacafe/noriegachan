@@ -245,15 +245,18 @@ function loadConfig() {
 		if (!isset($config['image_deleted']))
 			$config['image_deleted'] = $config['dir']['static'] . 'deleted.png';
 
-		if (!isset($config['uri_thumb']))
-			$config['uri_thumb'] = $config['root'] . $board['dir'] . $config['dir']['thumb'];
-		elseif (isset($board['dir']))
-			$config['uri_thumb'] = sprintf($config['uri_thumb'], $board['dir']);
+		if (isset($board)) {
+			$config['uri_thumb'] = $config['root'] . $board['dir'] . $config['dir']['thumb'];				if (!isset($config['uri_thumb']))
+		elseif (isset($board['dir']))					$config['uri_thumb'] = $config['root'] . $board['dir'] . $config['dir']['thumb'];
+			$config['uri_thumb'] = sprintf($config['uri_thumb'], $board['dir']);				elseif (isset($board['dir']))
 
-		if (!isset($config['uri_img']))
-			$config['uri_img'] = $config['root'] . $board['dir'] . $config['dir']['img'];
-		elseif (isset($board['dir']))
-			$config['uri_img'] = sprintf($config['uri_img'], $board['dir']);
+				$config['uri_thumb'] = sprintf($config['uri_thumb'], $board['dir']);
+		if (!isset($config['uri_img']))	
+			$config['uri_img'] = $config['root'] . $board['dir'] . $config['dir']['img'];				if (!isset($config['uri_img']))
+		elseif (isset($board['dir']))					$config['uri_img'] = $config['root'] . $board['dir'] . $config['dir']['img'];
+			$config['uri_img'] = sprintf($config['uri_img'], $board['dir']);				elseif (isset($board['dir']))
+				$config['uri_img'] = sprintf($config['uri_img'], $board['dir']);
+		}
 
 		if (!isset($config['uri_shadow_thumb']))
 			$config['uri_shadow_thumb'] = $config['root'] . $board['dir'] . $config['dir']['shadow_del'] . $config['dir']['thumb'];
@@ -310,7 +313,7 @@ function loadConfig() {
 
 	if ($config['verbose_errors']) {
 		set_error_handler('verbose_error_handler');
-		error_reporting(E_ALL);
+		error_reporting($config['deprecation_errors'] ? E_ALL : E_ALL & ~E_DEPRECATED);
 		ini_set('display_errors', true);
 		ini_set('html_errors', false);
 	} else {
@@ -408,8 +411,13 @@ function _syslog($priority, $message) {
 }
 
 function verbose_error_handler($errno, $errstr, $errfile, $errline) {
+	global $config;
+	
 	if (error_reporting() == 0)
 		return false; // Looks like this warning was suppressed by the @ operator.
+	if ($errno == E_DEPRECATED && !$config['deprecation_errors'])
+		return false;
+
 	error(utf8tohtml($errstr), true, array(
 		'file' => $errfile . ':' . $errline,
 		'errno' => $errno,
