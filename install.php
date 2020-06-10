@@ -832,11 +832,11 @@ if (file_exists($config['has_installed'])) {
 			break;
 		default:
 			$page['title'] = 'Unknown version';
-			$page['body'] = '<p style="text-align:center">NPFchan was unable to determine what version is currently installed.</p>';
+			$page['body'] = '<p style="text-align:center">bazukachan was unable to determine what version is currently installed.</p>';
 			break;
 		case VERSION:
 			$page['title'] = 'Already installed';
-			$page['body'] = '<p style="text-align:center">It appears that NPFchan is already installed (' . $version . ') and there is nothing to upgrade! Delete <strong>' . $config['has_installed'] . '</strong> to reinstall.</p>';
+			$page['body'] = '<p style="text-align:center">It appears that bazukachan is already installed (' . $version . ') and there is nothing to upgrade! Delete <strong>' . $config['has_installed'] . '</strong> to reinstall.</p>';
 			break;
 	}			
 	
@@ -917,14 +917,14 @@ if ($step == 0) {
 			'name' => 'PHP &ge; 5.4',
 			'result' => PHP_VERSION_ID >= 50400,
 			'required' => true,
-			'message' => 'NPFchan requires PHP 5.4 or better.',
+			'message' => 'Bazukachan requires PHP 5.4 or better.',
 		),
 		array(
 			'category' => 'PHP',
 			'name' => 'PHP &ge; 5.6',
 			'result' => PHP_VERSION_ID >= 50600,
 			'required' => false,
-			'message' => 'NPFchan works best on PHP 5.6 or better.',
+			'message' => 'Bazukachan works best on PHP 5.6 or better.',
 		),
 		array(
 			'category' => 'PHP',
@@ -1036,28 +1036,28 @@ if ($step == 0) {
 			'name' => getcwd(),
 			'result' => is_writable('.'),
 			'required' => true,
-			'message' => 'NPFchan does not have permission to create directories (boards) here. You will need to <code>chmod</code> (or operating system equivalent) appropriately.'
+			'message' => 'Bazukachan does not have permission to create directories (boards) here. You will need to <code>chmod</code> (or operating system equivalent) appropriately.'
 		),
 		array(
 			'category' => 'File permissions',
 			'name' => getcwd() . '/templates/cache',
 			'result' => is_writable('templates') || (is_dir('templates/cache') && is_writable('templates/cache')),
 			'required' => true,
-			'message' => 'You must give NPFchan permission to create (and write to) the <code>templates/cache</code> directory or performance will be drastically reduced.'
+			'message' => 'You must give bazukachan permission to create (and write to) the <code>templates/cache</code> directory or performance will be drastically reduced.'
 		),
 		array(
 			'category' => 'File permissions',
 			'name' => getcwd() . '/tmp/cache',
 			'result' => is_dir('tmp/cache') && is_writable('tmp/cache'),
 			'required' => true,
-			'message' => 'You must give NPFchan permission to write to the <code>tmp/cache</code> directory.'
+			'message' => 'You must give bazukachan permission to write to the <code>tmp/cache</code> directory.'
 		),
 		array(
 			'category' => 'File permissions',
 			'name' => getcwd() . '/inc/instance-config.php',
 			'result' => is_writable('inc/instance-config.php'),
 			'required' => false,
-			'message' => 'NPFchan does not have permission to make changes to <code>inc/instance-config.php</code>. To complete the installation, you will be asked to manually copy and paste code into the file instead.'
+			'message' => 'Bazukachan does not have permission to make changes to <code>inc/instance-config.php</code>. To complete the installation, you will be asked to manually copy and paste code into the file instead.'
 		),
 		array(
 			'category' => 'Misc',
@@ -1069,10 +1069,10 @@ if ($step == 0) {
 		),
 		array(
 			'category' => 'Misc',
-			'name' => 'NPFchan installed using git',
+			'name' => 'Bazukachan installed using git',
 			'result' => is_dir('.git'),
 			'required' => false,
-			'message' => 'NPFchan is still beta software and it\'s not going to come out of beta any time soon. As there are often many months between releases yet changes and bug fixes are very frequent, it\'s recommended to use the git repository to maintain your NPFchan installation. Using git makes upgrading much easier.'
+			'message' => 'Bazukachan is still beta software and it\'s not going to come out of beta any time soon. As there are often many months between releases yet changes and bug fixes are very frequent, it\'s recommended to use the git repository to maintain your NPFchan installation. Using git makes upgrading much easier.'
 		)
 	);
 
