@@ -1113,6 +1113,7 @@ $config['nicenotice_reasons'][] = "We care, and we hope you feel better soon. We
 	$config['image_identification_imgops'] = true;
 	$config['image_identification_exif'] = true;
 	$config['image_identification_google'] = true;
+	$config['image_identification_yandex'] = true;
 	// Anime/manga search engine.
 	$config['image_identification_iqdb'] = false;
 	
