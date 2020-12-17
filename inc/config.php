@@ -1403,8 +1403,12 @@ $config['nicenotice_reasons'][] = "We care, and we hope you feel better soon. We
 			'<embed src="http://video.google.com/googleplayer.swf?docid=$1&hl=en&fs=true" style="width:%%tb_width%%px;height:%%tb_height%%px;float:left;margin:10px 20px" allowFullScreen="true" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>'
 		),
 		array(
-			'/^https?:\/\/(\w+\.)?vocaroo\.com\/i\/([a-zA-Z0-9]{2,15})$/i',
-			'<object style="float: left;margin: 10px 20px;" width="148" height="44"><param name="movie" value="http://vocaroo.com/player.swf?playMediaID=$2&autoplay=0"><param name="wmode" value="transparent"><embed src="http://vocaroo.com/player.swf?playMediaID=$2&autoplay=0" width="148" height="44" wmode="transparent" type="application/x-shockwave-flash"></object>'
+			'/^https?:\/\/(\w+\.|)(vocaroo\.com\/|voca\.ro\/)([a-zA-Z0-9]{2,15})(&.+)?$/i',
+			'<iframe width="300" height="60" src="https://vocaroo.com/embed/$3?autoplay=0" frameborder="0" allow="autoplay"></iframe>'
+		),
+		array(
+			'/^https?:\/\/(\w+\.)?bitchute\.com\/video\/([^\s?&#\/]+)\/(&.+)?$/i',
+			'<iframe width="%%tb_width%%" height="%%tb_height%%" scrolling="no" frameborder="0" style="border: none;" src="https://www.bitchute.com/embed/$2"></iframe>'
 		)
 	);
 
@@ -1420,7 +1424,9 @@ $config['nicenotice_reasons'][] = "We care, and we hope you feel better soon. We
 		//array('liveleak', '/liveleak\.com\/view\?i=([^\s?&#\/]+)/i'), // Youtube videos on liveleak will currently give a misleading "File not found or deleted!" error
 		array('metacafe', '/metacafe\.com\/watch\/(\d+)/i'),
 		array('soundcloud', '/soundcloud\.com\/([^\s?&#]+)/i'),
-		array('vocaroo', '/vocaroo\.com\/i\/([^\s?&#\/]+)/i')
+		array('vocaroo', '/(?:vocaroo\.com\/|voca\.ro\/)([^\s?&#\/]+)/i'),
+    	array('bitchute', '/bitchute\.com\/video\/([^\s?&#\/]+)/i')
+
 	);
 	
 /*
