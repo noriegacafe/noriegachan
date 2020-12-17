@@ -50,7 +50,7 @@ switch($step)
 			for($i=0; $i<50; $i++) {
 				$time_devi = rand(0, 60*60*24*14);
 				$time = time() - $time_devi;
-				$query = sprintf("INSERT INTO ``posts_%s`` VALUES (NULL, NULL, 'Tread Test #%d', NULL, NULL, NULL, NULL, 'Thread Body #%d', 'Thread Body #%d', %d, NULL, NULL, 0, NULL, NULL, '1234abcd1234abcd1234abcd', '1234abcd1234abcd1234abcd', 0, 0, 0, 0, NULL, NULL)", $_board['uri'], $i, $i, $i, $time);
+				$query = sprintf("INSERT INTO ``posts_%s`` VALUES (NULL, NULL, 'Tread Test #%d', NULL, NULL, NULL, NULL, 'Thread Body #%d',  'Thread Body #%d', %d, NULL, NULL, 0, 'filehash1234abcd1234abcd1234abcd', 'pass', 'ip1234abcd1234abcd1234abcd', 'cookie1234abcd1234abcd1234abcd', 0, 0, 0, 0, 0, NULL, 'NULL')", $_board['uri'], $i, $i, $i, $time);
 				$query = query($query) or $sql_errors .= sprintf("<li>Add Dummy Thread %s<br/>", $_board['uri']) . db_error() . '</li>';
 
 				// Make Relpies to thread
@@ -59,7 +59,7 @@ switch($step)
 				$reply_count = rand(0, 100);
 				for($y=0; $y<$reply_count; $y++) {
 					$time = time() - rand(0, $time_devi);
-					$query = sprintf("INSERT INTO ``posts_%s`` VALUES (NULL, %d, 'Tread Test #%d Reply #%d', NULL, NULL, NULL, NULL, 'Reply Body #%d',  'Reply Body #%d',  %d, NULL, NULL, 0, NULL, NULL, '1234abcd1234abcd1234abcd', '1234abcd1234abcd1234abcd', 0, 0, 0, 0, NULL, NULL)", $_board['uri'], $thread_id, $thread_id, $y, $y, $y, $time);
+					$query = sprintf("INSERT INTO ``posts_%s`` VALUES (NULL, %d, 'Tread Test #%d Reply #%d', NULL, NULL, NULL, NULL, 'Reply Body #%d',  'Reply Body #%d',  %d, NULL, NULL, 0, 'filehash1234abcd1234abcd1234abcd', 'pass', 'ip1234abcd1234abcd1234abcd', 'cookie1234abcd1234abcd1234abcd', 0, 0, 0, 0, 0, NULL, 'NULL')", $_board['uri'], $thread_id, $thread_id, $y, $y, $y, $time);
 					$query = query($query) or $sql_errors .= sprintf("<li>Add Dummy Thread #%d Reply %s<br/>", $thread_id, $_board['uri']) . db_error() . '</li>';
 				}
 			}
