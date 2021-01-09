@@ -1227,6 +1227,12 @@ $config['nicenotice_reasons'][] = "We care, and we hope you feel better soon. We
 
 	// Additional lines added to the footer of all pages.
 	$config['footer'][] = _('All trademarks, copyrights, comments, and images on this page are owned by and are the responsibility of their respective parties.');
+	
+	// Canany
+	// You can set a text using the canary
+	// $config['canary'] [] = _('Your text.');
+	// By default it is disabled.
+	$config['canary'] = false;
 
 	// Characters used to generate a random password (with Javascript).
 	$config['genpassword_chars'] = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+';
