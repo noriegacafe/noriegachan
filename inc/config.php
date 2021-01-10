@@ -1230,7 +1230,7 @@ $config['nicenotice_reasons'][] = "We care, and we hope you feel better soon. We
 	
 	// Canany
 	// You can set a text using the canary
-	// $config['canary'] [] = _('Your text.');
+	// $config['canary'] = _('Your text.');
 	// By default it is disabled.
 	$config['canary'] = false;
 
