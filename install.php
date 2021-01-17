@@ -1,7 +1,7 @@
 <?php
 
 // Installation/upgrade file
-define('VERSION', '6.0.7');
+define('VERSION', '2.0.0');
 require 'inc/functions.php';
 loadConfig();
 
