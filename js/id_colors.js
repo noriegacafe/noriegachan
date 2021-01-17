@@ -1,9 +1,9 @@
-if (active_page == 'thread' || active_page == 'index') {
+if (active_page == 'thread' || active_page == 'index' || active_page == 'ukko'  ) {
 	$(document).ready(function(){
 		if (window.Options && Options.get_tab('general')) {
 			var selector = '#color-ids>input';
 			var e = 'change';
-			Options.extend_tab("general", "<label id='color-ids'><input type='checkbox' /> "+_('Color IDs')+"</label>");
+			Options.extend_tab("general", "<label id='color-ids'><input type='checkbox' /> "+_('IDs coloridos')+"</label>");
 		}
 
 		else {
@@ -13,14 +13,14 @@ if (active_page == 'thread' || active_page == 'index') {
 		}
 
 		$(selector).on(e, function() {
-			if (localStorage.color_ids === 'true') {
-				localStorage.color_ids = 'false';
-			} else {
+			if (localStorage.color_ids === 'undefined') {
 				localStorage.color_ids = 'true';
+			} else {
+				localStorage.color_ids = 'false';
 			}
 		});
 
-		if (!localStorage.color_ids || localStorage.color_ids === 'false') {
+		if (localStorage.color_ids === 'false') {
 			return;
 		} else {
 			$('#color-ids>input').attr('checked','checked');
@@ -48,7 +48,9 @@ if (active_page == 'thread' || active_page == 'index') {
 				"background-color": "rgb("+rgb[0]+", "+rgb[1]+", "+rgb[2]+")",
 				"padding": "0px 5px",
 				"border-radius": "8px",
-				"color": ft
+				"color": ft,
+            	
+            	"opacity": "0.5"
 			});
 		}
 
