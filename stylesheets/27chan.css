@@ -288,3 +288,12 @@ table.mod.config-editor td {
 .dropzone.dragover {
   background-color: #c8c8c8
 }
+
+.quick-reply-btn {
+  right: 15px !important;
+  bottom: 5px !important;
+  background: #4b630b;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 15%);
+  font-weight: bold;
+  color: #fff;
+}
