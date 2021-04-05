@@ -28,7 +28,7 @@ $.fn.scrollStopped = function(callback) {
 	});
 };
 
-function makeIcon(mode){
+/*function makeIcon(mode){
 	var favicon = $("link[rel='shortcut icon']");
 
 	if (!favicon.length) {
@@ -36,7 +36,7 @@ function makeIcon(mode){
 	}
 
 	$("link[rel='shortcut icon']").attr("href", configRoot+"static/favicon"+(mode?"-"+mode:"")+".ico");
-}
+}*/
 
 +function(){
 var notify = false;
@@ -134,7 +134,7 @@ $(document).ready(function(){
 				document.title = "("+new_posts+") "+title;
 			} else {
 				document.title = title;
-				makeIcon(false);
+				//makeIcon(false);
 			}
 		};
 	}
@@ -230,7 +230,7 @@ $(document).ready(function(){
 					if($('#' + id).length == 0) {
 						if (!new_posts) {
 							first_new_post = this;
-							makeIcon('reply');
+							//makeIcon('reply');
 							if (notify === "all" || (notify === "mention" && $(this).find('.own_post').length)) {
 								var body = $(this).children('.body').html().replace(/<br\s*[\/]?>/gi, "\n");
 								var n = new Notification("New reply to "+$('title').text(), {body: $('<div/>').html(body).text()});
