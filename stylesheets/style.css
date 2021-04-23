@@ -156,6 +156,7 @@ form table tr td div label {
 .file {
   float: left;
   margin-right: 2px;
+  min-width: 200px;
 }
 
 .file:not(.multifile) .post-image {
