@@ -1394,7 +1394,7 @@ $config['nicenotice_reasons'][] = "We care, and we hope you feel better soon. We
 		),
 		array(
 			'/^https?:\/\/(\w+\.)?vimeo\.com\/(\d{2,10})(\?.+)?$/i',
-			'<iframe style="float: left;margin: 10px 20px;" width="%%tb_width%%" height="%%tb_height%%" sandbox="allow-scripts" src="https://player.vimeo.com/video/$2" frameborder="0"></iframe>'
+			'<iframe style="float: left;margin: 10px 20px;" width="%%tb_width%%" height="%%tb_height%%" src="https://player.vimeo.com/video/$2?line=0" frameborder="0" allowfullscreen></iframe>'
 		),
 		array(
 			'/^https?:\/\/(\w+\.)?dailymotion\.com\/video\/([a-zA-Z0-9]{2,10})(_.+)?$/i',
