@@ -1912,7 +1912,8 @@ function mod_move($originBoard, $postID) {
 				'has_file' => false,
 				// attach to original thread
 				'thread' => $postID,
-				'op' => false
+				'op' => false,
+				'ip' => get_ip_hash($_SERVER['REMOTE_ADDR'])
 			);
 
 			$spost['body'] = $spost['body_nomarkup'] =  sprintf($config['mod']['shadow_mesage'], '>>>/' . $targetBoard . '/' . $newID);
