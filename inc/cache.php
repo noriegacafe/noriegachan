@@ -121,7 +121,7 @@ class Cache {
 			case 'redis':
 				if (!self::$cache)
 					self::init();
-				self::$cache->delete($key);
+				self::$cache->del($key);
 				break;
 			case 'apc':
 				apc_delete($key);
