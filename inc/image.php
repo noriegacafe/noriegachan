@@ -496,6 +496,28 @@ class ImageBMP extends ImageBase {
 	}
 }
 
+class ImageWEBP extends ImageBase
+{
+	public function from()
+	{
+		$this->image = @imagecreatefromwebp($this->src);
+	}
+
+	public function to($src)
+	{
+		imagewebp($this->image, $src);
+	}
+
+	public function resize()
+	{
+		$this->GD_create();
+		imagecolortransparent($this->image, imagecolorallocatealpha($this->image, 0, 0, 0, 0));
+		imagesavealpha($this->image, true);
+		imagealphablending($this->image, false);
+		$this->GD_copyresampled();
+	}
+}
+
 
 if (PHP_MAJOR_VERSION <= 7 && PHP_MINOR_VERSION < 2) {
 	include 'inc/image/bmp.php';
